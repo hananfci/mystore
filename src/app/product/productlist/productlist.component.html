@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+       <div class="col-sm-7  offset-sm-5">
+          <div *ngIf="!loadingdata">
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          </div>
+       </div> 
+        <ng-container *ngIf="loadingdata">
+          <div class="col" >
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 >Products List</h3>
+
+              </div>
+              <div class="panel-body">
+                <div *ngIf="productsList?.length > 0">
+                  <div class="col-md-12 d-flex justify-content-around align-items-center flex-wrap">
+                    <div class="card cust-card mb-2 col-3" *ngFor="let product of productsList">
+                        <img [src]="product?.image"   (click)="productDetails(product.id)" class="product-img mt-3"  alt="product image">
+                        <div class="card-body align-items-center">
+                          <h5 class="card-title"> {{product?.title}}</h5>     
+                          <p class="card-text"> <span class="txt-b"> Price:</span> {{product?.price}}</p>
+                         
+                          <select type="number" class="form-select w-50 select-amount"  (change)="amoutcount($event.target.value)">
+                            <option *ngFor="let amount of amounts" [ngValue]="amount.value">{{amount.name}}</option>
+                          </select>
+                          <button type="button" class="btn btn-primary mt-1 d-block position-absolute" (click)="addtocart()">Add to cart</button>
+    
+                        </div>
+                     
+                      </div>
+                   </div>
+                
+                </div>
+                <div *ngIf="productsList?.length == 0">
+                  <div class="bs-callout bs-callout-red col-xs-12 col-sm-12" id="callout-badges-ie8-empty">
+                    <h4> Empty List</h4>
+                    <p> 
+                      There isn't data, please add somedata ......
+                        
+                    </p>
+                </div>
+              </div> 
+              </div>
+            </div>
+          </div>
+        </ng-container>
+    </div>
+ </div>

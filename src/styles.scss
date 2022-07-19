@@ -2,3 +2,286 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    top: 57px;
+    right: -4%;
+  z-index: 100000;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #007bff ;
+    margin: -4px 0 0 -4px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+  
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .spinner div:first-child {
+      display: block;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border-radius: 50%;
+      box-shadow: 0 3px 3px 0 rgba(255,56,106,1);
+      transform: translate3d(0,0,0);
+      animation: spin 2s linear infinite;
+  }
+  
+
+   /* loading add */
+@keyframes ldio-tw3lft2h3a {
+  0% {
+    opacity: 1;
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1.5,1.5);
+  } 100% {
+    opacity: 0;
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1,1);
+  }
+}
+.ldio-tw3lft2h3a div > div {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+  background: #0e1155;
+  animation: ldio-tw3lft2h3a 1s linear infinite;
+}.ldio-tw3lft2h3a div:nth-child(1) > div {
+  left: 74px;
+  top: 44px;
+  animation-delay: -0.875s;
+}
+.ldio-tw3lft2h3a > div:nth-child(1) {
+  transform: rotate(0deg);
+  transform-origin: 80px 50px;
+}.ldio-tw3lft2h3a div:nth-child(2) > div {
+  left: 65px;
+  top: 65px;
+  animation-delay: -0.75s;
+}
+.ldio-tw3lft2h3a > div:nth-child(2) {
+  transform: rotate(45deg);
+  transform-origin: 71px 71px;
+}.ldio-tw3lft2h3a div:nth-child(3) > div {
+  left: 44px;
+  top: 74px;
+  animation-delay: -0.625s;
+}
+.ldio-tw3lft2h3a > div:nth-child(3) {
+  transform: rotate(90deg);
+  transform-origin: 50px 80px;
+}.ldio-tw3lft2h3a div:nth-child(4) > div {
+  left: 23px;
+  top: 65px;
+  animation-delay: -0.5s;
+}
+.ldio-tw3lft2h3a > div:nth-child(4) {
+  transform: rotate(135deg);
+  transform-origin: 29px 71px;
+}.ldio-tw3lft2h3a div:nth-child(5) > div {
+  left: 14px;
+  top: 44px;
+  animation-delay: -0.375s;
+}
+.ldio-tw3lft2h3a > div:nth-child(5) {
+  transform: rotate(180deg);
+  transform-origin: 20px 50px;
+}.ldio-tw3lft2h3a div:nth-child(6) > div {
+  left: 23px;
+  top: 23px;
+  animation-delay: -0.25s;
+}
+.ldio-tw3lft2h3a > div:nth-child(6) {
+  transform: rotate(225deg);
+  transform-origin: 29px 29px;
+}.ldio-tw3lft2h3a div:nth-child(7) > div {
+  left: 44px;
+  top: 14px;
+  animation-delay: -0.125s;
+}
+.ldio-tw3lft2h3a > div:nth-child(7) {
+  transform: rotate(270deg);
+  transform-origin: 50px 20px;
+}.ldio-tw3lft2h3a div:nth-child(8) > div {
+  left: 65px;
+  top: 23px;
+  animation-delay: 0s;
+}
+.ldio-tw3lft2h3a > div:nth-child(8) {
+  transform: rotate(315deg);
+  transform-origin: 71px 29px;
+}
+.loadingio-spinner-spin-tg278z7z83 { 
+    background: transparent;
+    position: absolute;
+    top: -100%;
+    right: 100%;
+    z-index: 10000;
+}
+  .product-img{
+    width:200px;
+    height:200px;
+  }
+  .txt-b{
+    font-weight: 700;
+  }
+  .responsetable {
+
+    width:99%;
+    margin-right:3px;
+    border-collapse: collapse;
+    border: 1px solid #eee!important;
+    border-bottom: 3px solid #29c1b8!important;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.10), 0px 10px 20px rgba(0,0,0,0.05), 0px 20px 20px rgba(0,0,0,0.05), 0px 30px 20px rgba(0,0,0,0.05);
+  }
+  .responsetable tr:hover
+  {
+    background: #f4f4f4;
+  }
+  
+   .responsetable td {
+        color: #555;
+      }
+  
+  
+  .responsetable th, td {
+    color: #999;
+    border: 1px solid #eee;
+    border-collapse: collapse;
+    text-align:center;
+    padding: 8px 10px;
+  
+  }
+  .responsetable th {
+    background:#29c1b8; /*#0076a3;*/
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+  
+  }
+   .responsetable th last {
+      border-right: none;
+    }
+    td:nth-child(even) {
+      background-color: #f2f2f273;
+    }
+  
+  form{
+    border: 2px solid #e5dddd;
+    border-radius: 5px;
+    padding: 25px 58px;
+  }
+  .block{
+    display: block;
+  }
+    .none{
+display: none;
+    }
+ .error{
+      color:rgb(226 21 21);
+    }
+    
+  input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: rgb(226 21 21) 1px solid;
+}
+
+.cust-card {
+  height: 469px;
+  cursor: pointer;
+}
+.position-absolute {
+  bottom: 18px;
+}
+.cust-card .select-amount {
+  position: absolute;
+  bottom: 76px;
+}
+.cust-card p.card-text {
+  bottom: 100px;
+  position: absolute;
+}
+.img-size{
+  width:38px;
+}
+.txt-bold{
+  font-weight: bold;
+}
