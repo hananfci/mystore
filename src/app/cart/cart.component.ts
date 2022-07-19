@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
       this.OnGeProductdetails(res.products[i].productId,res.products[i].quantity);
     }    
    })
-   console.log("this.cartProduct",this.cartProduct)
+   
    this.loadingdata = true
  }
  OnGeProductdetails(id:string,quantity:number) {
