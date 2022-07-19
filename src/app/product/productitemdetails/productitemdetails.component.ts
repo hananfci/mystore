@@ -35,8 +35,8 @@ export class ProductitemdetailsComponent implements OnInit {
     this.amountCount = e
    }
    addtocart(){
-      this.productservics.getCardCount(this.amountCount)
-      alert("Add to cart")
+      this.productservics.getCardCount({ amount:this.amountCount, cartsubmit: false })
+       alert("Add to cart")
     }
    goBack(){
       this.router.navigate([`product`]);

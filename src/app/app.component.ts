@@ -11,8 +11,16 @@ export class AppComponent implements OnInit {
   cardCount:number = 0;
   constructor(private productservics:ProductService){}
   ngOnInit() {
+    debugger;
       this.productservics.countCard.subscribe(res =>{
-        this.cardCount = this.cardCount + Number(res)
-      })
+        if(!res.cartsubmit){
+          this.cardCount = this.cardCount + Number(res.amount)
+          }
+          else{
+            this.cardCount = 0
+          }
+       }
+     )
   }
+
 }

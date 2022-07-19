@@ -7,7 +7,7 @@ import { IProduct } from './product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  @Output() countCard = new EventEmitter();
+  @Output() countCard = new EventEmitter<any>();
   totalprice: BehaviorSubject<number> = new BehaviorSubject(0);
   apiRoot=environment.apiRoot;
   constructor(private http:HttpClient) { }
@@ -27,7 +27,8 @@ export class ProductService {
   onPost(product: object){
     return this.http.post<IProduct>(`${this.apiRoot}/products`, product);
   }
-  getCardCount(num:number){
+  getCardCount(num:object){
+    debugger;
     this.countCard.emit(num)
     }
  

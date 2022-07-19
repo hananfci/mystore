@@ -55,6 +55,7 @@ export class CartComponent implements OnInit {
 } 
 
 onSubmit(){
+  debugger;
   this.postdata=true;
   this.userInfoObj={
     fullName:this.productForm.value.fullName,
@@ -62,7 +63,8 @@ onSubmit(){
     creditCardNumber:this.productForm.value.creditNumber,    
   };
   this.postdata = false;
-  this.productservics.totalprice.next(this.totalPrice)
+  this.productservics.getCardCount({ amount:0, cartsubmit: true });
+  this.productservics.totalprice.next(this.totalPrice);
   this.router.navigate([`success`]);
  
 }

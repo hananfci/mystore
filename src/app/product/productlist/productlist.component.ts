@@ -44,7 +44,7 @@ export class ProductlistComponent implements OnInit {
   this.amountCount = e
  }
  addtocart(){
-this.productservics.getCardCount(this.amountCount)
+this.productservics.getCardCount({amount:this.amountCount, cartsubmit: false })
   }
  productDetails(id: number) {
     this.router.navigate([`product/${id}`]);
