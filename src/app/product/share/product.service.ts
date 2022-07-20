@@ -2,7 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IProduct } from './product.model';
+import { IcartProduct, IProduct } from './product.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,17 +19,21 @@ export class ProductService {
   onGetProduct(id:string){    
     return this.http.get(`${this.apiRoot}/products/${id}`);  
   } 
- 
-
   getUserCart():Observable<any>{
     return this.http.get(`${this.apiRoot}/carts/6`)
   }
-  onPost(product: object){
-    return this.http.post<IProduct>(`${this.apiRoot}/products`, product);
+ 
+  getCartProduct(): IcartProduct[] | []{
+    debugger
+    const getProduct = localStorage.getItem('cart')
+    return getProduct? JSON.parse(getProduct): [];
   }
-  getCardCount(num:object){
-    debugger;
+  getCardCount(num:object,product:IcartProduct []){    
+    localStorage.setItem('cart', JSON.stringify(product));    
     this.countCard.emit(num)
     }
  
+
+
+   
 }

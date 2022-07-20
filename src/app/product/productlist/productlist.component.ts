@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProduct } from '../share/product.model';
+import { IcartProduct, IProduct } from '../share/product.model';
 import { ProductService } from '../share/product.service';
 @Component({
   selector: 'app-productlist',
@@ -10,9 +10,10 @@ import { ProductService } from '../share/product.service';
 export class ProductlistComponent implements OnInit {
 
   Products :IProduct[];
+  cartProducts:IcartProduct[] = [];
   loadingdata :boolean= false;
   amountCount:number = 1;
- 
+ exist:boolean = false;
   amounts:Array<Object> = [
       {value: 1, name: "1"},
       {value: 2, name: "2"},
@@ -25,6 +26,7 @@ export class ProductlistComponent implements OnInit {
  
  
   ngOnInit() {
+  this.cartProducts = this.productservics.getCartProduct();
    this.productsList()  
  }
  productsList() {
@@ -43,8 +45,31 @@ export class ProductlistComponent implements OnInit {
  amoutcount(e){
   this.amountCount = e
  }
- addtocart(){
-this.productservics.getCardCount({amount:this.amountCount, cartsubmit: false })
+ addtocart(productitem:IProduct){
+  debugger;
+  let cartitem:IcartProduct = {
+    "id":productitem.id,
+    "product":productitem,
+    "amount":this.amountCount,    
+    }
+    this.exist =this.cartProducts.some(function(el){ return el.id == productitem.id});
+    if(!this.exist){
+      this.cartProducts.push(cartitem)
+    }
+    else {
+      this.cartProducts.map(item => {
+        let oldeamount = 0;
+        if(item.id == productitem.id){
+          oldeamount = Number(item.amount)
+          item.amount = oldeamount + Number(this.amountCount);
+          console.log("old amount",oldeamount, "amount",item.amount)
+          return item.amount;
+        }
+      });
+    }
+   
+  this.productservics.getCardCount({amount:this.amountCount, cartsubmit: false },this.cartProducts)
+  alert("Add to cart")
   }
  productDetails(id: number) {
     this.router.navigate([`product/${id}`]);

@@ -24,7 +24,7 @@
                           <select type="number" class="form-select w-50 select-amount"  (change)="amoutcount($event.target.value)">
                             <option *ngFor="let amount of amounts" [ngValue]="amount.value">{{amount.name}}</option>
                           </select>
-                          <button type="button" class="btn btn-primary mt-1 d-block position-absolute" (click)="addtocart()">Add to cart</button>
+                          <button type="button" class="btn btn-primary mt-1 d-block position-absolute" (click)="addtocart(product)">Add to cart</button>
     
                         </div>
                      

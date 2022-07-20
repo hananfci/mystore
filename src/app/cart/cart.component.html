@@ -10,16 +10,18 @@
             <div class="panel panel-primary">
            
               <div class="panel-body">
-                <div *ngIf="cartProduct?.length > 0">
+                <div *ngIf="cartProducts?.length > 0">
                   <div class="container">
                    <div class="row justify-content-md-center">
                         <div class="col-md-7 d-flex justify-content-around align-items-center flex-wrap"  >
-                          <div class="col-12  mt-5 d-flex" *ngFor="let productitem of cartProduct">
-                              <img [src]="productitem.products?.image"  class="product-img mt-3"  alt="product image">
+                          <div class="col-12  mt-5 d-flex" *ngFor="let productitem of cartProducts">
+                              <img [src]="productitem.product?.image"  class="product-img mt-3"  alt="product image">
                               <div class="card-body align-items-center">
-                                <h5 class="card-title"> {{productitem.products?.title}}</h5>     
-                                <p class="card-text"> <span class="txt-b"> Price:</span> ${{productitem.products?.price}}</p>
+                                <h5 class="card-title"> {{productitem.product?.title}}</h5>     
+                                <p class="card-text"> <span class="txt-b"> Price:</span> ${{productitem.product?.price}}</p>
                               <input type="number" [value]="productitem.amount" disabled/>
+                              <button type="button" class="btn   d-block mt-3 " (click)="removeFromCart(productitem.id)" style="color:rgb(136, 30, 30)">  <i class="fa fa fa-trash" style="font-size:18px"></i> Remove</button>
+
                               </div>
                           
                           </div>
@@ -31,6 +33,8 @@
                                   <label class="form-label">Full Name</label>
                                   <input type="text" formControlName="fullName" class="form-control">
                                   <span *ngIf="productForm.controls['fullName'].errors?.required && productForm.controls['fullName'].touched" class="error"> This field required </span>
+                                  <span *ngIf="productForm.controls['fullName'].errors?.minlength && productForm.controls['fullName'].touched" class="error"> full name must be not less than 20 character </span>
+
               
                               </div>
                               <div class="mb-3">

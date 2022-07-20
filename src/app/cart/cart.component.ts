@@ -10,50 +10,56 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cartProduct:IcartProduct[] = [];
   loadingdata :boolean= false;
   totalPrice:number = 0;
   productForm:FormGroup;  
   postdata :boolean= false;
   userInfoObj:IUserInfo;
+  amountCount:number = 0
   amounts:Array<Object> = [
     {value: 1, name: "1"},
     {value: 2, name: "2"},
     {value: 3, name: "3"},
     {value: 4, name: "4"}
 ];
-  
+cartProducts:IcartProduct[] = [];
   constructor(private productservics:ProductService,private router: Router) { }
 
   ngOnInit(): void {
     this.productForm=new FormGroup({
-      fullName: new FormControl(null,[Validators.required]),
+      fullName: new FormControl(null,[Validators.required,Validators.minLength(20)]),
       address: new FormControl(null,[Validators.required]),
       creditNumber: new FormControl(null,[Validators.required]),  
     })
-    this.getuserCart();
-  }
- getuserCart(){
-  this.productservics.getUserCart().subscribe(res =>{
-    for (let i=0;i <res.products.length;i++){
-      this.OnGeProductdetails(res.products[i].productId,res.products[i].quantity);
-    }    
-   })
    
-   this.loadingdata = true
- }
- OnGeProductdetails(id:string,quantity:number) {
-  this.productservics.onGetProduct(id).subscribe((res) => {
-    const jsonValue = JSON.stringify(res);
-    const valueFromJson = JSON.parse(jsonValue);
-    this.cartProduct.push({
-      "products":valueFromJson,
-      "amount":quantity
-    });
-     this.totalPrice += Number(valueFromJson.price)
-  }); 
-} 
+    this.OnGeProductdetails();
+  }
 
+ OnGeProductdetails() { 
+  this.cartProducts = this.productservics.getCartProduct();
+  console.log(this.cartProducts)
+  if(this.cartProducts.length == 0){
+    alert("your cart is empty, add product to cart")
+    this.router.navigate([`product`]);
+  }
+    this.loadingdata = true;
+    this.totalPrice = 0;
+    this.amountCount = 0
+    this.cartProducts.forEach(el =>{
+        this.totalPrice += (el.product.price * el.amount) 
+        this.amountCount += Number(el.amount)
+        }) 
+        
+
+} 
+removeFromCart(id:number){
+  this.cartProducts = this.cartProducts.filter(item => item.id !== id);
+  alert("you deleted item from cart")  
+  localStorage.clear();
+  localStorage.setItem('cart', JSON.stringify(this.cartProducts)); 
+  this.OnGeProductdetails();    
+  this.productservics.getCardCount({amount:this.amountCount, cartsubmit: false,decreas:true },this.cartProducts)
+}
 onSubmit(){
   debugger;
   this.postdata=true;
@@ -63,9 +69,13 @@ onSubmit(){
     creditCardNumber:this.productForm.value.creditNumber,    
   };
   this.postdata = false;
-  this.productservics.getCardCount({ amount:0, cartsubmit: true });
   this.productservics.totalprice.next(this.totalPrice);
+  this.cartProducts = [];
+  localStorage.clear();
+  this.productservics.getCardCount({amount:this.amountCount, cartsubmit: true},this.cartProducts)
+
   this.router.navigate([`success`]);
  
 }
+
 }

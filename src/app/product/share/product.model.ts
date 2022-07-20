@@ -4,10 +4,12 @@ export interface  IProduct
 "price":number,
 "description": string,
 "image": string,
-"category": string 
+"category": string,
+"id": number,
 }
 export interface IcartProduct{
-    products:IProduct,
+    id:number,
+    product:IProduct,
     amount:number
 }
 export interface IUserInfo{
