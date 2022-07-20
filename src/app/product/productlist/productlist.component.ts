@@ -13,6 +13,7 @@ export class ProductlistComponent implements OnInit {
   cartProducts:IcartProduct[] = [];
   loadingdata :boolean= false;
   amountCount:number = 1;
+  amountChange:boolean = false;
  exist:boolean = false;
   amounts:Array<Object> = [
       {value: 1, name: "1"},
@@ -43,14 +44,18 @@ export class ProductlistComponent implements OnInit {
        });
  }
  amoutcount(e){
+  this.amountChange = true
   this.amountCount = e
+  console.log("recent amount",this.amountCount)
  }
- addtocart(productitem:IProduct){
-  debugger;
+ addtocart(productitem:IProduct){  
   let cartitem:IcartProduct = {
     "id":productitem.id,
     "product":productitem,
     "amount":this.amountCount,    
+    }
+    if(!this.amountChange){
+      this.amountCount = 1;
     }
     this.exist =this.cartProducts.some(function(el){ return el.id == productitem.id});
     if(!this.exist){
@@ -67,7 +72,7 @@ export class ProductlistComponent implements OnInit {
         }
       });
     }
-   
+    this.amountChange  = false;
   this.productservics.getCardCount({amount:this.amountCount, cartsubmit: false },this.cartProducts)
   alert("Add to cart")
   }
