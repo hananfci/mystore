@@ -9,7 +9,7 @@ install the dependencies - npm install
 If you feel like there's a major problem, please open an issue to discuss the problem and potential resolution.
 
 ## To get started developing right away:
-install #### npm install
+install (npm install) 
 start the development server with ng serve --open  --port 4401 
 
 ## In the project directory, you can see:
