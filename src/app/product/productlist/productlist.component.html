@@ -16,7 +16,7 @@
                 <div *ngIf="productsList?.length > 0">
                   <div class="col-md-12 d-flex justify-content-around align-items-center flex-wrap">
                     <div class="card cust-card mb-2 col-3" *ngFor="let product of productsList">
-                        <img [src]="product?.image"   (click)="productDetails(product.id)" class="product-img mt-3"  alt="product image">
+                        <img [src]="product?.image"  (click)="productDetails(product.id)" class="product-img mt-3"  alt="product image">
                         <div class="card-body align-items-center">
                           <h5 class="card-title"> {{product?.title}}</h5>     
                           <p class="card-text"> <span class="txt-b"> Price:</span> {{product?.price}}</p>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IcartProduct, IProduct } from '../share/product.model';
 import { ProductService } from '../share/product.service';
@@ -15,15 +15,10 @@ export class ProductlistComponent implements OnInit {
   amountCount:number = 1;
   amountChange:boolean = false;
  exist:boolean = false;
-  amounts:Array<Object> = [
-      {value: 1, name: "1"},
-      {value: 2, name: "2"},
-      {value: 3, name: "3"},
-      {value: 4, name: "4"}
-  ];
+ @Input() amounts:Array<any>;
   
   constructor(private productservics:ProductService,
-               private router: Router,)  { }
+               private router: Router,private route:ActivatedRoute)  { }
  
  
   ngOnInit() {
