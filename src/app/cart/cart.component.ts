@@ -16,6 +16,10 @@ export class CartComponent implements OnInit {
   postdata :boolean= false;
   userInfoObj:IUserInfo;
   amountCount:number = 0
+  nameMinlengthValidate:boolean = false;
+  addresseMinlengthValidate:boolean = false;
+ creditMinlengthValidate:boolean = false;
+  
   amounts:Array<Object> = [
     {value: 1, name: "1"},
     {value: 2, name: "2"},
@@ -28,8 +32,8 @@ cartProducts:IcartProduct[] = [];
   ngOnInit(): void {
     this.productForm=new FormGroup({
       fullName: new FormControl(null,[Validators.required,Validators.minLength(20)]),
-      address: new FormControl(null,[Validators.required]),
-      creditNumber: new FormControl(null,[Validators.required]),  
+      address: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+      creditNumber: new FormControl(null,[Validators.required,Validators.minLength(16)]),  
     })
    
     this.OnGeProductdetails();
@@ -60,6 +64,17 @@ removeFromCart(id:number){
   this.OnGeProductdetails();    
   this.productservics.getCardCount({amount:this.amountCount, cartsubmit: false,decreas:true },this.cartProducts)
 }
+validatename(e,formcontrolname:string){
+  this.nameMinlengthValidate = (formcontrolname == 'fullName') && (e.length < 20 && e !='') ? true:false ;
+}
+validateAddress(e,formcontrolname:string){
+  this.addresseMinlengthValidate = (formcontrolname == 'address') && (e.length < 10 && e !='') ? true:false ;
+}
+validateCreditCard(e,formcontrolname:string){
+  this.creditMinlengthValidate = (formcontrolname == 'creditcard') && (e.length < 16 && e !='') ? true:false ;
+
+}
+ 
 onSubmit(){
   debugger;
   this.postdata=true;
@@ -73,9 +88,7 @@ onSubmit(){
   this.cartProducts = [];
   localStorage.clear();
   this.productservics.getCardCount({amount:this.amountCount, cartsubmit: true},this.cartProducts)
-
-  this.router.navigate([`success`]);
- 
+  this.router.navigate([`success`]); 
 }
 
 }

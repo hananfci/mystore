@@ -31,22 +31,26 @@
                           <form class="g-3" [formGroup] ="productForm" (ngSubmit) = "onSubmit()">
                               <div class="mb-3">
                                   <label class="form-label">Full Name</label>
-                                  <input type="text" formControlName="fullName" class="form-control">
+                                  <input type="text" formControlName="fullName" class="form-control"  [(ngModel)]="productForm.value.fullName" (ngModelChange)="validatename($event,'fullName')" >
                                   <span *ngIf="productForm.controls['fullName'].errors?.required && productForm.controls['fullName'].touched" class="error"> This field required </span>
-                                  <span *ngIf="productForm.controls['fullName'].errors?.minlength && productForm.controls['fullName'].touched" class="error"> full name must be not less than 20 character </span>
+                                  <span *ngIf="nameMinlengthValidate" class="error"> full name must be not less than 20 character </span>
 
               
                               </div>
                               <div class="mb-3">
                                   <label class="form-label">Address</label>
-                                  <input type="text" formControlName="address" class="form-control" >
+                                  <input type="text" formControlName="address" class="form-control" [(ngModel)]="productForm.value.address" (ngModelChange)="validateAddress($event,'address')" >
                                   <span *ngIf="productForm.controls['address'].errors?.required && productForm.controls['address'].touched" class="error"> This field required </span>
+                                  <span *ngIf="addresseMinlengthValidate" class="error"> full name must be not less than 10 character </span>
+
               
                               </div>                
                               <div class="mb-3">
                                   <label class="form-label">Credit card number</label>
-                                  <input type="text"  formControlName="creditNumber" class="form-control" >
+                                  <input type="text"  formControlName="creditNumber" class="form-control" [(ngModel)]="productForm.value.creditNumber" (ngModelChange)="validateCreditCard($event,'creditcard')" >
                                   <span *ngIf="productForm.controls['creditNumber'].errors?.required && productForm.controls['creditNumber'].touched" class="error"> This field required </span>
+                                  <span *ngIf="creditMinlengthValidate" class="error"> full name must be not less than 16 character </span>
+
               
                               </div>
                               <div class="mb-3">
